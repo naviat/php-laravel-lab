@@ -1,4 +1,4 @@
-FROM php:7
+FROM php:7.1
 MAINTAINER Hai Dam <haidv.ict@gmail.com>
 
 RUN apt-get update && apt-get install -y \
@@ -27,7 +27,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install mbstring mcrypt pdo_mysql curl json intl gd xml zip bz2 opcache \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
+    && php -v \
     && cd ~ \
-    && curl -O https://raw.githubusercontent.com/laravel/laravel/5.3/composer.json \
+    && curl -O https://raw.githubusercontent.com/laravel/laravel/master/composer.json \
     && curl -sS https://getcomposer.org/installer | php \
     && php composer.phar install --no-autoloader --no-scripts --no-suggest
